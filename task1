@@ -1,0 +1,647 @@
+anatoli@tonik-desktop:~$ cd git_tutorial/work
+anatoli@tonik-desktop:~/git_tutorial/work$ git status
+На ветке master
+
+Начальный коммит
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+
+	../files/
+	./
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+anatoli@tonik-desktop:~/git_tutorial/work$ ls
+hello
+anatoli@tonik-desktop:~/git_tutorial/work$ cd hello
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git status
+На ветке master
+нечего коммитить, нет изменений в рабочем каталоге
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ checkout master
+checkout: команда не найдена
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+Уже на «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git status
+На ветке master
+Изменения, которые будут включены в коммит:
+  (используйте «git reset HEAD <файл>…», чтобы убрать из индекса)
+
+	изменено:      hello.html
+
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git reset HEAD hello.html
+Непроиндексированные изменения после сброса:
+M	hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git status
+На ветке master
+нечего коммитить, нет изменений в рабочем каталоге
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat hello.html
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "oops"
+[master 7628395] oops
+ 1 file changed, 1 insertion(+)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git revert HEAD
+[master b99c610] Revert "oops"
+ 1 file changed, 1 deletion(-)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* b99c610 2016-11-12 | Revert "oops" (HEAD -> master) [tttonik1047]
+* 7628395 2016-11-12 | oops [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* b99c610 2016-11-12 | Revert "oops" (HEAD -> master) [tttonik1047]
+* 7628395 2016-11-12 | oops [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git  tag oops
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git reset --hard v1;
+HEAD сейчас на 405d991 Added HTML page tags
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hits
+git: «hits» не является командой git. Смотрите «git --help».
+
+Возможно, вы имели в виду это?
+	hist
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* 405d991 2016-11-12 | Added HTML page tags (HEAD -> master, tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* b99c610 2016-11-12 | Revert "oops" (tag: oops) [tttonik1047]
+* 7628395 2016-11-12 | oops [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (HEAD -> master, tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git tag -d oops
+Метка «oops» удалена (была b99c610)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* 405d991 2016-11-12 | Added HTML page tags (HEAD -> master, tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cimmit -m "add an autor comment"
+git: «cimmit» не является командой git. Смотрите «git --help».
+
+Возможно, вы имели в виду это?
+	commit
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "add an autor comment"
+[master c1ef202] add an autor comment
+ 1 file changed, 1 insertion(+)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit --amend -m "add an autor/email comment"
+[master d4203b6] add an autor/email comment
+ Date: Sat Nov 12 19:09:51 2016 +0200
+ 1 file changed, 1 insertion(+)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* d4203b6 2016-11-12 | add an autor/email comment (HEAD -> master) [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ mkdir lib
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git mv hello.html lib
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git status
+На ветке master
+Изменения, которые будут включены в коммит:
+  (используйте «git reset HEAD <файл>…», чтобы убрать из индекса)
+
+	переименовано: hello.html -> lib/hello.html
+
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "moved hello.html to lib"
+[master 90b8198] moved hello.html to lib
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename hello.html => lib/hello.html (100%)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ hist
+Программа 'hist' на данный момент не установлена. Вы можете установить её, выполнив:
+sudo apt install loki
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* 90b8198 2016-11-12 | moved hello.html to lib (HEAD -> master) [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ touch index.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add index.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "added index.html."
+[master fc784ca] added index.html.
+ 1 file changed, 5 insertions(+)
+ create mode 100644 index.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls -c .git
+COMMIT_EDITMSG  objects    COMMIT_EDITM  logs      config       hooks  refs
+index           ORIG_HEAD  HEAD          branches  description  info
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls -c .git/objects
+3c  ae  90  d4  81  a5  76  04  40  6d  4d  02  01  info
+fc  74  4e  60  c1  b9  bd  78  14  34  e4  e6  b4  pack
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls -c .git/objects/<dir>
+bash: ошибка синтаксиса около неожиданной лексемы `newline'
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat .git/config
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls .git.refs
+ls: невозможно получить доступ к '.git.refs': Нет такого файла или каталога
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls .git/refs
+heads  tags
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls .git/refs/heads
+master
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat .git/refs/tags/v1
+405d9917c71a31161db2309296223dae02d5f2d1
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat .git/HEAD
+ref: refs/heads/master
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --max-count=1
+* fc784ca 2016-11-12 | added index.html. (HEAD -> master) [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --max-count=3
+* fc784ca 2016-11-12 | added index.html. (HEAD -> master) [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -t <hash>
+bash: ошибка синтаксиса около неожиданной лексемы `newline'
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -t <fc784ca> 
+bash: ошибка синтаксиса около неожиданной лексемы `newline'
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -t fc784ca
+commit
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -p fc784ca
+tree 3c4520ebf099b85bedf83473384c83e026ad9bd6
+parent 90b819863b3a4dcb34e7a5eb495d72b2725fad3f
+author tttonik1047 <analuda1047@gmail.com> 1478971050 +0200
+committer tttonik1047 <analuda1047@gmail.com> 1478971050 +0200
+
+added index.html.
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -p 3c4520ebf
+100644 blob aeeb538cd0610f43516914c29faaae04e80a870d	index.html
+040000 tree 4e5e2442cec2c8ac9b0f6b6b20213056f01f2ca6	lib
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -p 4e5e2442cec2c
+100644 blob 600ef3f54e2e9515eaf1eaf27b08d96102411eb2	hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file -p 600ef3f54
+<!--avtor platonov(analuda1047@gmail.com) -->
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ ls
+index.html  lib
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout -b style
+Переключено на новую ветку «style»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git status
+На ветке style
+нечего коммитить, нет изменений в рабочем каталоге
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout -b style
+fatal: Ветка с именем «style» уже существует.
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ touch lib/style.css
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add lib/style.css
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "added css stylesheet"
+[style cd0d7f8] added css stylesheet
+ 1 file changed, 3 insertions(+)
+ create mode 100644 lib/style.css
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add lib/hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "hello uses style.css"
+[style ea64d6d] hello uses style.css
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add index.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "updated index.html
+> "
+[style 946aef3] updated index.html
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* 946aef3 2016-11-12 | updated index.html (HEAD -> style) [tttonik1047]
+* ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+* cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. (master) [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+Переключено на ветку «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat lib/hello.html
+<!--avtor platonov(analuda1047@gmail.com) -->
+<html>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout stile 
+error: pathspec 'stile' did not match any file(s) known to git.
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat lin/hello.html
+cat: lin/hello.html: Нет такого файла или каталога
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout style
+Переключено на ветку «style»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cat lib/hello.html
+<!-- Author: Alexander Shvets (alex@githowto.com) -->
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" media="all" href="style.css" />
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+Переключено на ветку «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add readme
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "added readme"
+[master e07f3a4] added readme
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readme
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* e07f3a4 2016-11-12 | added readme (HEAD -> master) [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git cat-file 01df0ec
+использование: git cat-file (-t [--allow-unknown-type]|-s [--allow-unknown-type]|-e|-p|<тип>|--textconv) <объект>
+   или: git cat-file (--batch | --batch-check) [--follow-symlinks]
+
+<тип> может быть одним из: blob, tree, commit, tag
+    -t                    показать тип объекта
+    -s                    показать размер объекта
+    -e                    выйти с нулевым кодом возврата, если нет ошибки
+    -p                    структурированный вывод содержимого объекта
+    --textconv            запустить texconv на содержимом двоичных объектов
+    --allow-unknown-type  разрешить -s и -t работать с повреждёнными объектами
+    --buffer              буфферировать вывод --batch
+    --batch[=<формат>]    показать информацию и содержимое объектов, переданных из стандартного ввода
+    --batch-check[=<формат>]
+                          показать информацию об объектах, переданных из стандартного ввода
+    --follow-symlinks     переходить по символьным ссылкам внутри дерева (используется с опциями --batch и --batch-check)
+    --batch-all-objects   показать все объекты с опциями --batch или --batch-check
+
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ hist --all
+Программа 'hist' на данный момент не установлена. Вы можете установить её, выполнив:
+sudo apt install loki
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* e07f3a4 2016-11-12 | added readme (HEAD -> master) [tttonik1047]
+| * 946aef3 2016-11-12 | updated index.html (style) [tttonik1047]
+| * ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+| * cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+|/  
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout style
+Переключено на ветку «style»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git marge master
+git: «marge» не является командой git. Смотрите «git --help».
+
+Возможно, вы имели в виду это?
+	merge
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git merge master
+Merge made by the 'recursive' strategy.
+ readme | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readme
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --al
+fatal: неопознанный аргумент: --al
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist all
+fatal: ambiguous argument 'all': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+*   93a1c3b 2016-11-12 | Merge branch 'master' into style (HEAD -> style) [tttonik1047]
+|\  
+| * e07f3a4 2016-11-12 | added readme (master) [tttonik1047]
+* | 946aef3 2016-11-12 | updated index.html [tttonik1047]
+* | ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+* | cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+|/  
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+Переключено на ветку «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add lib/hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m 'life is great'
+[master ae5487c] life is great
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* ae5487c 2016-11-12 | life is great (HEAD -> master) [tttonik1047]
+| *   93a1c3b 2016-11-12 | Merge branch 'master' into style (style) [tttonik1047]
+| |\  
+| |/  
+|/|   
+* | e07f3a4 2016-11-12 | added readme [tttonik1047]
+| * 946aef3 2016-11-12 | updated index.html [tttonik1047]
+| * ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+| * cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+|/  
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout style
+Переключено на ветку «style»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git merge master
+Автослияние lib/hello.html
+КОНФЛИКТ (содержимое): Конфликт слияния в lib/hello.html
+Не удалось провести автоматическое слияние; исправьте конфликты и сделайте коммит результата.
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add lib/hello.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "merged master fixed conflict."
+[style df383cd] merged master fixed conflict.
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ hit checkout style
+Команда 'hit' не найдена, возможно вы имели в виду:
+ Команда 'hkt' из пакета 'hopenpgp-tools' (universe)
+ Команда 'git' из пакета 'git' (main)
+ Команда 'hot' из пакета 'hopenpgp-tools' (universe)
+ Команда 'nit' из пакета 'python-nevow' (universe)
+ Команда 'hitc' из пакета 'pvm-examples' (universe)
+ Команда 'hist' из пакета 'loki' (universe)
+ Команда 'wit' из пакета 'wit' (universe)
+ Команда 'ht' из пакета 'tex4ht' (universe)
+ Команда 'vit' из пакета 'vit' (universe)
+hit: команда не найдена
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout style
+Уже на «style»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+*   df383cd 2016-11-12 | merged master fixed conflict. (HEAD -> style) [tttonik1047]
+|\  
+| * ae5487c 2016-11-12 | life is great (master) [tttonik1047]
+* |   93a1c3b 2016-11-12 | Merge branch 'master' into style [tttonik1047]
+|\ \  
+| |/  
+| * e07f3a4 2016-11-12 | added readme [tttonik1047]
+* | 946aef3 2016-11-12 | updated index.html [tttonik1047]
+* | ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+* | cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+|/  
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git reset --hard 946aef3
+HEAD сейчас на 946aef3 updated index.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* ae5487c 2016-11-12 | life is great (master) [tttonik1047]
+* e07f3a4 2016-11-12 | added readme [tttonik1047]
+| * 946aef3 2016-11-12 | updated index.html (HEAD -> style) [tttonik1047]
+| * ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+| * cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+|/  
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+Переключено на ветку «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* ae5487c 2016-11-12 | life is great (HEAD -> master) [tttonik1047]
+* e07f3a4 2016-11-12 | added readme [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git reset --hard e07f3a4
+HEAD сейчас на e07f3a4 added readme
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* e07f3a4 2016-11-12 | added readme (HEAD -> master) [tttonik1047]
+| * 946aef3 2016-11-12 | updated index.html (style) [tttonik1047]
+| * ea64d6d 2016-11-12 | hello uses style.css [tttonik1047]
+| * cd0d7f8 2016-11-12 | added css stylesheet [tttonik1047]
+|/  
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout style
+Переключено на ветку «style»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git rebase master
+Сначала перематываем указатель текущего коммита, чтобы применить ваши изменения поверх него…
+Применение: added css stylesheet
+Применение: hello uses style.css
+Применение: updated index.html
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* 953e964 2016-11-12 | updated index.html (HEAD -> style) [tttonik1047]
+* 7bfe73a 2016-11-12 | hello uses style.css [tttonik1047]
+* 106aab4 2016-11-12 | added css stylesheet [tttonik1047]
+* e07f3a4 2016-11-12 | added readme (master) [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist --all
+* 953e964 2016-11-12 | updated index.html (HEAD -> style) [tttonik1047]
+* 7bfe73a 2016-11-12 | hello uses style.css [tttonik1047]
+* 106aab4 2016-11-12 | added css stylesheet [tttonik1047]
+* e07f3a4 2016-11-12 | added readme (master) [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+Переключено на ветку «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git merge master
+Already up-to-date.
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git merge style
+Обновление e07f3a4..953e964
+Fast-forward
+ index.html     | 5 ++++-
+ lib/hello.html | 5 ++++-
+ lib/style.css  | 3 +++
+ 3 files changed, 11 insertions(+), 2 deletions(-)
+ create mode 100644 lib/style.css
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git hist
+* 953e964 2016-11-12 | updated index.html (HEAD -> master, style) [tttonik1047]
+* 7bfe73a 2016-11-12 | hello uses style.css [tttonik1047]
+* 106aab4 2016-11-12 | added css stylesheet [tttonik1047]
+* e07f3a4 2016-11-12 | added readme [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cd ..
+anatoli@tonik-desktop:~/git_tutorial/work$ pwd
+/home/anatoli/git_tutorial/work
+anatoli@tonik-desktop:~/git_tutorial/work$ ls
+hello
+anatoli@tonik-desktop:~/git_tutorial/work$ gi clone hello cloned_hello
+gi: команда не найдена
+anatoli@tonik-desktop:~/git_tutorial/work$ git clone hello cloned_hello
+Клонирование в «cloned_hello»…
+готово.
+anatoli@tonik-desktop:~/git_tutorial/work$ cd cloned_hello
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ ls
+index.html  lib  readme
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git hist --all
+* 953e964 2016-11-12 | updated index.html (HEAD -> master, origin/style, origin/master, origin/HEAD) [tttonik1047]
+* 7bfe73a 2016-11-12 | hello uses style.css [tttonik1047]
+* 106aab4 2016-11-12 | added css stylesheet [tttonik1047]
+* e07f3a4 2016-11-12 | added readme [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git remote
+origin
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git remote show origin
+* внешний репозиторий origin
+  URL для извлечения: /home/anatoli/git_tutorial/work/hello
+  URL для отправки: /home/anatoli/git_tutorial/work/hello
+  HEAD ветка: master
+  Внешние ветки:
+    master отслеживается
+    style  отслеживается
+  Локальная ветка, настроенная для «git pull»:
+    master будет слита с внешней веткой master
+  Локальная ссылка, настроенная для «git push»:
+    master будет отправлена в master (уже актуальна)
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git branch
+* master
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/style
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ cd ../hello
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add readme
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "changed readme in original repozitory"
+[master 88db99a] changed readme in original repozitory
+ 1 file changed, 1 insertion(+)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cd ../cloned_hello
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git fetch
+remote: Подсчет объектов: 3, готово.
+remote: Сжатие объектов: 100% (2/2), готово.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Распаковка объектов: 100% (3/3), готово.
+Из /home/anatoli/git_tutorial/work/hello
+   953e964..88db99a  master     -> origin/master
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git hist --all
+* 88db99a 2016-11-12 | changed readme in original repozitory (origin/master, origin/HEAD) [tttonik1047]
+* 953e964 2016-11-12 | updated index.html (HEAD -> master, origin/style) [tttonik1047]
+* 7bfe73a 2016-11-12 | hello uses style.css [tttonik1047]
+* 106aab4 2016-11-12 | added css stylesheet [tttonik1047]
+* e07f3a4 2016-11-12 | added readme [tttonik1047]
+* fc784ca 2016-11-12 | added index.html. [tttonik1047]
+* 90b8198 2016-11-12 | moved hello.html to lib [tttonik1047]
+* d4203b6 2016-11-12 | add an autor/email comment [tttonik1047]
+* 405d991 2016-11-12 | Added HTML page tags (tag: v1) [tttonik1047]
+* 34b7dde 2016-11-12 | Added h1 tag (tag: v1-beta) [tttonik1047]
+* e47e110 2016-11-12 | second commit [tttonik1047]
+* 01df0ec 2016-11-12 | First Commit [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ cat readme
+this is the github
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git merge origin/master
+Обновление 953e964..88db99a
+Fast-forward
+ readme | 1 +
+ 1 file changed, 1 insertion(+)
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ cat readme
+this is the github
+changed
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git branch --track style origin/style
+Ветка style отслеживает внешнюю ветку style из origin.
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git branch -a
+* master
+  style
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/style
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git hist --max-count=2
+* 88db99a 2016-11-12 | changed readme in original repozitory (HEAD -> master, origin/master, origin/HEAD) [tttonik1047]
+* 953e964 2016-11-12 | updated index.html (origin/style, style) [tttonik1047]
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ cd ..
+anatoli@tonik-desktop:~/git_tutorial/work$ git clone --bare hello.git
+fatal: репозиторий «hello.git» не существует
+anatoli@tonik-desktop:~/git_tutorial/work$ git clone --bare hello hello.git
+Клонирование в голый репозиторий «hello.git»…
+готово.
+anatoli@tonik-desktop:~/git_tutorial/work$ ls hello.git
+branches  config  description  HEAD  hooks  info  objects  packed-refs  refs
+anatoli@tonik-desktop:~/git_tutorial/work$ cd hello
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git remote add shared ../hello.git
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git checkout master
+M	readme
+Уже на «master»
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git add readme
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git commit -m "added shared comment to readme"
+[master 63d3789] added shared comment to readme
+ 1 file changed, 2 insertions(+)
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ git push shared master
+Подсчет объектов: 3, готово.
+Delta compression using up to 8 threads.
+Сжатие объектов: 100% (2/2), готово.
+Запись объектов: 100% (3/3), 288 bytes | 0 bytes/s, готово.
+Total 3 (delta 1), reused 0 (delta 0)
+To ../hello.git
+   88db99a..63d3789  master -> master
+anatoli@tonik-desktop:~/git_tutorial/work/hello$ cd ../cloned_hello
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git remote add shared ../hello.git
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git branch --track shared master
+Ветка shared отслеживает локальную ветку master.
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git pull
+remote: Подсчет объектов: 3, готово.
+remote: Сжатие объектов: 100% (2/2), готово.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Распаковка объектов: 100% (3/3), готово.
+Из /home/anatoli/git_tutorial/work/hello
+   88db99a..63d3789  master     -> origin/master
+Обновление 88db99a..63d3789
+Fast-forward
+ readme | 2 ++
+ 1 file changed, 2 insertions(+)
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ cat readme
+this is the github
+changed
+changed
+
+anatoli@tonik-desktop:~/git_tutorial/work/cloned_hello$ git daemon --verbose --export-all --base-path=.
+[5255] Ready to rumble
+git clone git://localgost/hello.git netwirk_hello
+cd network_hello
+ls
+
